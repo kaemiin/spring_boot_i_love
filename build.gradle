@@ -12,20 +12,9 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
-apply plugin: 'war'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'info.robotbrain.lombok'
-
-war {
-    baseName = 'myapp'
-    version =  '0.1.0'
-}
-
-jar {
-    baseName = 'myapp'
-    version =  '0.0.1-SNAPSHOT'
-}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -38,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    //compile('org.springframework.boot:spring-boot-starter-data-redis')      
+    
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile("org.springframework.boot:spring-boot-starter-web")
@@ -47,8 +36,7 @@ dependencies {
     
     compile("org.springframework.boot:spring-boot-devtools")    
     
-//    providedRuntime("org.springframework.boot:spring-boot-starter-activemq")
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    compile("org.springframework.boot:spring-boot-starter-tomcat")
     
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("junit:junit")
@@ -57,6 +45,12 @@ dependencies {
 
 bootRun {
     addResources = true
+}
+
+jar {
+    baseName = 'myapp'
+    version =  '1.0'
+    excludes = ['**/logback.xml']
 }
 
 task initSourceFolders {
