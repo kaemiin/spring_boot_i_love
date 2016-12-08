@@ -54,7 +54,7 @@ sudo chown km:km myapp/conf
 將以下檔案拷貝至執行目錄中：
 
 ```
-將./build/libs/myapp-1.0.jar 拷貝至 pwdreset中
+將./build/libs/myapp-1.0.jar 拷貝至 myapp中
 sudo chown km:km myapp-1.0.jar
 sudo chmod a+x myapp-1.0.jar
 
