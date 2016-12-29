@@ -85,7 +85,6 @@ sudo mv springboot /etc/init.d
 chkconfig --add springboot
 chkconfig --level 345 springboot on
 ```
-
 2. 啟動服務：
 ```
 service springboot start
