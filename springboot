@@ -1,0 +1,23 @@
+#!/bin/bash
+# description: Spring Boot: Start / Stop / Restart
+# chkconfig: 234 86 15
+
+RUNNER_HOME=/opt/springboot
+EXEC_USER=km
+
+case $1 in
+start)
+cd $RUNNER_HOME
+su $EXEC_USER -c "$RUNNER_HOME/start.sh"
+;;
+stop)
+cd $RUNNER_HOME
+su $EXEC_USER -c "$RUNNER_HOME/stop.sh"
+;;
+restart)
+cd $RUNNER_HOME
+su $EXEC_USER -c "$RUNNER_HOME/stop.sh"
+su $EXEC_USER -c "$RUNNER_HOME/start.sh"
+;;
+esac
+exit 0

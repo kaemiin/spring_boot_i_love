@@ -53,6 +53,26 @@ jar {
     excludes = ['**/logback.xml']
 }
 
+task('exportResources') << {
+
+    println "RUN export - logback.xml 、  application.properties ..."
+
+    copy {
+
+        FileTree tree = fileTree('src/main/resources') {
+
+            include 'logback.xml'
+            include 'application.properties'
+        }
+
+        from(tree)
+
+        into file('build/libs')
+    }
+}
+
+build.finalizedBy(exportResources)
+
 task initSourceFolders {
    sourceSets*.java.srcDirs*.each { it.mkdirs() }
    sourceSets*.resources.srcDirs*.each { it.mkdirs() }

@@ -46,10 +46,9 @@ gradle build
 cd /opt
 mkdir myapp
 mkdir myapp/log
+mkdir myapp/log/gc
 mkdir myapp/conf
-sudo chown km:km myapp
-sudo chown km:km myapp/log
-sudo chown km:km myapp/conf
+sudo chown km:km -R myapp
 ```
 將以下檔案拷貝至執行目錄中：
 
@@ -72,8 +71,24 @@ sudo chmod a+x stop.sh
 ```
 
 ```
-將./src/main/resources/logback.xml 拷貝至 myapp/conf中
+將./build/libs下的/logback.xml、application.properties 拷貝至 myapp/conf中
 sudo chown km:km myapp/conf/logback.xml
+sudo chown km:km ./conf/application.properties
 ```
 
-設定開機排程：啟動請呼叫`start.sh`，停止請呼叫`stop.sh`，相關的log檔案會產生在`./log`下。
+設定開機排程：
+
+1. 將專案目錄下的pwdsetter拷貝至/etc/init.d中，並註冊成服務：
+```
+sudo chmod a+x springboot
+sudo mv springboot /etc/init.d
+chkconfig --add springboot
+chkconfig --level 345 springboot on
+```
+
+2. 啟動服務：
+```
+service springboot start
+```
+相關的log檔案會產生在`./log`下。
+
